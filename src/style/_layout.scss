@@ -685,6 +685,22 @@
   width: 75px;
 }
 
+.toggle-html-preview {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    cursor: pointer;
+    background: #7d8293;
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+    height: 30px;
+  }
+
 .scheme-container
 {
     margin: 0 0 20px 0;

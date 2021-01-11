@@ -6,6 +6,22 @@ import saveAs from "js-file-download"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
 export default class HighlightCode extends Component {
+  constructor() {
+    super()
+    this.state = {
+      previewVisible: false
+    }
+    this.togglePreview = this.togglePreview.bind(this)
+  }
+
+  togglePreview = () => {
+    if (this.state.previewVisible) {
+      this.setState({ previewVisible: false })
+    } else {
+      this.setState({ previewVisible: true })
+    }
+  };
+
   static propTypes = {
     value: PropTypes.string.isRequired,
     getConfigs: PropTypes.func.isRequired,
@@ -69,7 +85,15 @@ export default class HighlightCode extends Component {
           </div>
         }
 
-        { codeBlock }
+        { !canCopy ? null :
+          <div className="toggle-html-preview" onClick={this.togglePreview}>
+            {this.state.previewVisible ? "Hide" : "Show"} Preview
+          </div>
+        }
+
+        { !this.state.previewVisible ? codeBlock :
+          <iframe srcDoc={value} style={{ width: "100%", border: "none", height: "50em" }}></iframe>
+        }
       </div>
     )
   }
